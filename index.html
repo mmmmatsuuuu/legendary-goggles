@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <title>トップ</title>
+</head>
+<body>
+    <h1>疑似面接アプリ</h1>
+    <a href="./interview.html">模擬面接をする</a>
+    <div>
+        <input type="text" id="input-question" name="input-question" value="" placeholder="志望動機を教えてください。">
+        <input type="text" id="input-model-answer" name="input-model-answer" value="" placeholder="私の志望動機は、...">
+        <button onclick="createData()">質問を追加</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>質問内容</th>
+                <th>模範解答</th>
+                <th>編集</th>
+                <th>削除</th>
+            </tr>
+        </thead>
+        <tbody id="q-table-body">
+
+        </tbody>
+    </table>
+    <button onclick="initAll()">初期化する</button>
+    <script src="./src/js/lib.js"></script>
+    <script src="./src/js/index.js"></script>
+</body>
+</html>
