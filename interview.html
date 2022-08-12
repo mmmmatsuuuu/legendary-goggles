@@ -11,9 +11,16 @@
     <a href="./index.html">戻る</a>
     <div>
         <p id="question"></p>
+        <textarea id="answer">
+
+        </textarea>
+        <button onclick="recAnswer()">録音</button>
         <div>
-            <button>戻る</button>
-            <button>次へ</button>
+            <button id="prev">戻る</button>
+            <button id="next">次へ</button>
+        </div>
+        <div>
+            <button id="speak">再生</button>
         </div>
     </div>
     <script src="./src/js/lib.js"></script>

@@ -13,6 +13,7 @@ const interviewsTemplate = [
 let COUNT_INIT = 3;
 const TABLE_ID = "q-table-body";
 const INTERVIEW_ID = "interviews";
+const ANSWER_ID = "answer";
 const COUNT_ID = "count";
 
 /** ==========================================================
@@ -56,7 +57,6 @@ function createData() {
     question.number = count;
     question.question = q;
     question.modelAnswer = a;
-    console.log(question);
     // LocalStorageの内容をテーブルに反映
     const interviewData = loadFromLocalStorage(INTERVIEW_ID);
     interviewData.push(question);
@@ -80,7 +80,6 @@ function updateData(num) {
  * @param {Integer} num 
  */
 function deleteData(num) {
-    console.log(num + "を削除します。");
     // LocalStorageのデータを取得
     const interviewData = loadFromLocalStorage(INTERVIEW_ID);
 
@@ -139,6 +138,7 @@ function setDataToTable(tableId, datas) {
         var tdEdit = this.document.createElement("td");
         var btnEdit = this.document.createElement("button");
         btnEdit.innerText = "編集";
+        btnEdit.disabled = true; // updateData() が完成したらとる。
         btnEdit.setAttribute("onclick", `updateData(${ data.number })`);
         tdEdit.appendChild(btnEdit);
         tr.appendChild(tdEdit);
