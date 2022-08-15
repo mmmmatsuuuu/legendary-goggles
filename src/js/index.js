@@ -116,11 +116,7 @@ function createData(interviewNum) {
     // LocalStorageの内容をテーブルに反映
     setToLocalStorage(INTERVIEW_ID, interviewData);
 
-    // テーブルに反映
-    setDataToTable(`${TABLE_ID}-1`, interviewData.interview1.contents, 1);
-    setDataToTable(`${TABLE_ID}-2`, interviewData.interview2.contents, 2);
-    setDataToTable(`${TABLE_ID}-3`, interviewData.interview3.contents, 3);
-    setDataToTable(`${TABLE_ID}-4`, interviewData.interview4.contents, 4);
+    location.href = "./index.html"
 }
 
 /**
