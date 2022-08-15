@@ -1,20 +1,17 @@
 // 初期値
-const INTERVIEW_ID = "interviews";
-const ANSWER_ID = "answer";
-const COUNT_ID = "count";
-const QUESTION_DOM = "question";
-
-const answerTemplate = {
-    qNumber: 0,
-    yourAnswer: "",
-}
+const INTERVIEW_ID   = "interviews";
+const ANSWER_ID      = "answer";
+const COUNT_ID       = "count";
+const QUESTION_DOM   = "question";
+const Q_NUM_DOM      = "question-number";
+const INTERVIEW_INFO = "interview-info";
 
 // テキスト読み上げAPI
 const synth = new SpeechSynthesisUtterance(); 
 synth.text   = "";
 synth.lang   = "ja-JP";
 synth.rate   = 1;
-synth.pitch  = 1;
+synth.pitch  = 0;
 synth.volume = 1;
 
 // 音声認識API
@@ -36,32 +33,66 @@ window.addEventListener("load", function() {
     // クエリパラメータの設定
     const url = new URL(location.href);
     const qID = Number(url.searchParams.get("q_id"));
+    const interviewID = Number(url.searchParams.get("interview_id"));
+
     // 質問データの読み込み
     const data = loadFromLocalStorage(INTERVIEW_ID);
-
+    let currentInterview
+    switch (interviewID) {
+        case 1:
+            currentInterview = data.interview1;
+            break;
+        case 2:
+            currentInterview = data.interview2;
+            break;
+        case 3:
+            currentInterview = data.interview3;
+            break;
+        case 4:
+            currentInterview = data.interview4;
+            break;
+        default:
+            alert("不適切な値を取得しました。");
+            return;
+    }
+    
     // 最初の質問の表示
-    const p = this.document.getElementById(QUESTION_DOM);
-    p.innerHTML = data[qID].question;
+    const qNum  = this.document.getElementById(Q_NUM_DOM);
+    const p     = this.document.getElementById(QUESTION_DOM);
+    const inter = this.document.getElementById(INTERVIEW_INFO);
+    qNum.value      = currentInterview.contents[qID].number;
+    p.innerHTML     = currentInterview.contents[qID].question;
+    inter.innerHTML = `${ qID + 1 } / ${ currentInterview.contents.length }`;
 
     // ボタンの生成
     const prevBtn = this.document.getElementById("prev");
     const nextBtn = this.document.getElementById("next");
 
-    if (qID == 0) {
-        // 最初の質問の場合
-        prevBtn.setAttribute("onclick", `myAlert("これは最初の質問です。")`);
-        nextBtn.setAttribute("onclick", `goNextQuestion(${ qID })`);
-    } else if (qID == data.length - 1) {
+    if (currentInterview.contents.length == 1) {
         // 最後の質問の場合
         prevBtn.setAttribute("onclick", `goPreviousQuestion(${ qID })`);
+        nextBtn.innerHTML = "結果へ";
         nextBtn.setAttribute("onclick", `goResultPage()`);
     } else {
-        // 途中の質問の場合
-        prevBtn.setAttribute("onclick", `goPreviousQuestion(${ qID })`);
-        nextBtn.setAttribute("onclick", `goNextQuestion(${ qID })`);
+        if (qID == 0) {
+            // 最初の質問の場合
+            prevBtn.setAttribute("onclick", `myAlert("これは最初の質問です。")`);
+            nextBtn.setAttribute("onclick", `goNextQuestion(${ qID })`);
+        } else if (qID == currentInterview.contents.length - 1) {
+            // 最後の質問の場合
+            prevBtn.setAttribute("onclick", `goPreviousQuestion(${ qID })`);
+            nextBtn.innerHTML = "結果へ";
+            nextBtn.setAttribute("onclick", `goResultPage()`);
+        } else {
+            // 途中の質問の場合
+            prevBtn.setAttribute("onclick", `goPreviousQuestion(${ qID })`);
+            nextBtn.setAttribute("onclick", `goNextQuestion(${ qID })`);
+        }
     }
+
     const speakBtn = this.document.getElementById("speak");
-    speakBtn.setAttribute("onclick", `playQuestion("${ data[qID].question }")`);
+    speakBtn.setAttribute("onclick", `playQuestion("${ currentInterview.contents[qID].question }")`);
+    playQuestion(currentInterview.contents[qID].question);
 });
 
 /** ==========================================================
@@ -71,21 +102,28 @@ window.addEventListener("load", function() {
 
 /**
  * 次の質問にページ遷移する
- * @param {Integer} num 
+ * @param {Integer} qId 
  */
-function goNextQuestion(num) {
+function goNextQuestion(qId) {
     // ユーザの解答登録
     storeAnswer();
     // ページ遷移
-    location.href = `./interview.html?q_id=${ num + 1 }`;
+    const url = new URL(location.href);
+    const interviewID = Number(url.searchParams.get("interview_id"));
+
+    location.href = `./interview.html?interview_id=${ interviewID }&q_id=${ qId + 1 }`;
 }
 
 /**
  * 前の質問にページ遷移する
- * @param {Integer} num 
+ * @param {Integer} qId 
  */
-function goPreviousQuestion(num) {
-    location.href = `./interview.html?q_id=${ num - 1 }`;
+function goPreviousQuestion(qId) {
+    // ページ遷移
+    const url = new URL(location.href);
+    const interviewID = Number(url.searchParams.get("interview_id"));
+
+    location.href = `./interview.html?interview_id=${ interviewID }&q_id=${ qId - 1 }`;
 }
 
 /**
@@ -94,7 +132,11 @@ function goPreviousQuestion(num) {
 function goResultPage() {
     // ユーザの解答登録
     storeAnswer();
-    location.href = "./result.html";
+    // ページ遷移
+    const url = new URL(location.href);
+    const interviewID = Number(url.searchParams.get("interview_id"));
+
+    location.href = `./result.html?interview_id=${ interviewID }`;
 }
 
 /**
@@ -117,22 +159,32 @@ function recAnswer() {
  * 文字に起こしたユーザーの解答をlocalstorageに保存する
  */
 function storeAnswer() {
-    const userAns = document.getElementById("answer").value;
-    if (userAns) {
-        const answers = loadFromLocalStorage(ANSWER_ID);
-        const data = loadFromLocalStorage(INTERVIEW_ID);
-        const url = new URL(location.href);
-        const qID = Number(url.searchParams.get("q_id"));
-        const answer = answerTemplate;
-        answer.qNumber = data[qID].number;
-        answer.yourAnswer = userAns;
-        if (answers) {
-            answers.push(answer);
-            setToLocalStorage(ANSWER_ID, answers);
-        } else {
-            setToLocalStorage(ANSWER_ID, [answer]);
-        }
+    const url = new URL(location.href);
+    const interviewID = Number(url.searchParams.get("interview_id"));
+
+    // 入力データの取得
+    const qNum = document.getElementById(Q_NUM_DOM).value;
+    const inputData = document.getElementById(ANSWER_ID).value;
+
+    // データ整形
+    const interviewData = loadFromLocalStorage(INTERVIEW_ID);
+    let re;
+    switch (interviewID) {
+        case 1:
+            re = setValueInContents(interviewData.interview1.contents, qNum, inputData, "userAnswer");
+            break;
+        case 2:
+            re = setValueInContents(interviewData.interview2.contents, qNum, inputData, "userAnswer");
+            break;
+        case 3:
+            re = setValueInContents(interviewData.interview3.contents, qNum, inputData, "userAnswer");
+            break;
+        case 4:
+            re = setValueInContents(interviewData.interview4.contents, qNum, inputData, "userAnswer");
+            break;
     }
+    // データをLocalStorageに保存
+    setToLocalStorage(INTERVIEW_ID, interviewData);
 }
 
 /**
@@ -147,3 +199,12 @@ function myAlert(str) {
  * 共通関数
  * ===========================================================
  */
+function setValueInContents(contents, number, value, key) {
+    for (let i = 0; i < contents.length; i++) {
+        if (contents[i].number == number) {
+            contents[i][key] = value;
+            return "can change :) ";
+        }
+    }
+    return "can't change. :( ";
+}
