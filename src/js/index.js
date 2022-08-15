@@ -121,6 +121,8 @@ function createData(interviewNum) {
     setDataToTable(`${TABLE_ID}-2`, interviewData.interview2.contents, 2);
     setDataToTable(`${TABLE_ID}-3`, interviewData.interview3.contents, 3);
     setDataToTable(`${TABLE_ID}-4`, interviewData.interview4.contents, 4);
+
+    location.href = "./index.html"
 }
 
 /**
