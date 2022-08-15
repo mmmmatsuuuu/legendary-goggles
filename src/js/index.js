@@ -122,8 +122,8 @@ function createData(interviewNum) {
     setDataToTable(`${TABLE_ID}-3`, interviewData.interview3.contents, 3);
     setDataToTable(`${TABLE_ID}-4`, interviewData.interview4.contents, 4);
 
-    q = "";
-    a = "";
+    document.getElementById("input-question-" + interviewNum).value = "";
+    document.getElementById("input-model-answer-" + interviewNum).value = "";
 }
 
 /**
