@@ -33,12 +33,14 @@
         </div>
         <div class="flex items-top w-full mb-4">
             <div class="text-xl font-bold basis-1/12">A:</div>
-            <div class="basis-9/12">
+            <div class="basis-9/12 flex flex-col">
                 <input type="hidden" id="question-number">
+                <div id="rec-status" class="text-secondary"></div>
                 <textarea id="answer" class="w-full h-32 text-lg border border-secondary"></textarea>
             </div>
-            <div class="basis-2/12 flex justify-end items-top">
-                <button onclick="recAnswer()" class="px-8 py-2 border-main border-2 hover:bg-main hover:text-white">録音</button>
+            <div class="basis-2/12 flex flex-col justify-start">
+                <button onclick="recStart()" class="h-full px-8 py-2 mb-2 ml-1 border-main border-2 hover:bg-main hover:text-white">録音</button>
+                <button onclick="recStop()" class="h-full px-8 py-2 ml-1 border-main border-2 hover:bg-main hover:text-white">停止</button>
             </div>
         </div>
         <div class="mb-2">
