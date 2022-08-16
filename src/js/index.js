@@ -127,11 +127,104 @@ function createData(interviewNum) {
 }
 
 /**
- * 既存の質問事項を編集
- * @param {Integer} num 
+ * 編集画面用モーダルを開く
+ * @param {*} interviewNum 
+ * @param {*} qNum 
+ * @returns 
  */
-function updateData(num) {
-    console.log(num + "を編集します。");
+function openUpdateWindow(interviewNum, qNum) {
+    const interviewData = loadFromLocalStorage(INTERVIEW_ID);
+
+    let currentContents
+    switch (interviewNum) {
+        case 1:
+            currentContents = interviewData.interview1.contents;
+            break;
+        case 2:
+            currentContents = interviewData.interview2.contents;
+            break;
+        case 3:
+            currentContents = interviewData.interview3.contents;
+            break;
+        case 4:
+            currentContents = interviewData.interview4.contents;
+            break;
+        default:
+            alert("不適切な値を取得しました。");
+            return;
+    }
+
+    for (let i = 0; i < currentContents.length; i++) {
+        if (currentContents[i].number == qNum) {
+            document.getElementById("edit-question").value = currentContents[i].question;
+            document.getElementById("edit-answer").value = currentContents[i].modelAnswer;
+        }
+    }
+    document.getElementById("edit-button").setAttribute("onclick", `updateData(${ interviewNum }, ${ qNum }, "${ TABLE_ID + "-" + interviewNum }")`);
+    document.getElementById("modal").classList.remove("hidden");
+}
+
+/**
+ * 編集画面用モーダルを閉じる。
+ */
+function closeModal() {
+    document.getElementById("modal").classList.add("hidden");
+}
+
+/**
+ * 既存の質問事項を編集
+ * @param {Integer} interviewNum 
+ * @param {Integer} qNum 
+ */
+function updateData(interviewNum, qNum, tableId) {
+    const interviewData = loadFromLocalStorage(INTERVIEW_ID);
+
+    const q = document.getElementById("edit-question").value;
+    const a = document.getElementById("edit-answer").value;
+
+    switch (interviewNum) {
+        case 1:
+            for (let i = 0; i < interviewData.interview1.contents.length; i++) {
+                if (interviewData.interview1.contents[i].number == qNum) {
+                    interviewData.interview1.contents[i].question = q;
+                    interviewData.interview1.contents[i].modelAnswer = a;
+                }
+            }
+            setDataToTable(tableId, interviewData.interview1.contents, 1);
+            break;
+        case 2:
+            for (let i = 0; i < interviewData.interview2.contents.length; i++) {
+                if (interviewData.interview2.contents[i].number == qNum) {
+                    interviewData.interview2.contents[i].question = q;
+                    interviewData.interview2.contents[i].modelAnswer = a;
+                }
+            }
+            setDataToTable(tableId, interviewData.interview2.contents, 2);
+            break;
+        case 3:
+            for (let i = 0; i < interviewData.interview3.contents.length; i++) {
+                if (interviewData.interview3.contents[i].number == qNum) {
+                    interviewData.interview3.contents[i].question = q;
+                    interviewData.interview3.contents[i].modelAnswer = a;
+                }
+            }
+            setDataToTable(tableId, interviewData.interview3.contents, 3);
+            break;
+        case 4:
+            for (let i = 0; i < interviewData.interview4.contents.length; i++) {
+                if (interviewData.interview4.contents[i].number == qNum) {
+                    interviewData.interview4.contents[i].question = q;
+                    interviewData.interview4.contents[i].modelAnswer = a;
+                }
+            }
+            setDataToTable(tableId, interviewData.interview4.contents, 4);
+            break;
+        default:
+            alert("不適切な値を取得しました。");
+            return;
+    }
+    setToLocalStorage(INTERVIEW_ID, interviewData);
+    document.getElementById("modal").classList.add("hidden");
 }
 
 /**
@@ -264,8 +357,7 @@ function setDataToTable(tableId, datas, interviewNum) {
         var btnEdit = this.document.createElement("button");
         btnEdit.className = "p-1 border-accent border-2 hover:bg-accent hover:text-white";
         btnEdit.innerText = "編集";
-        btnEdit.disabled = true; // updateData() が完成したらとる。
-        btnEdit.setAttribute("onclick", `updateData(${ interviewNum }, ${ data.number })`);
+        btnEdit.setAttribute("onclick", `openUpdateWindow(${ interviewNum }, ${ data.number })`);
         tdEdit.appendChild(btnEdit);
         tr.appendChild(tdEdit);
         // 削除フィールド

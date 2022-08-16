@@ -21,7 +21,7 @@ recognition.onresult = function(e) {
     recognition.stop();
     if(e.results[0].isFinal){
         const autotext =  e.results[0][0].transcript
-        document.getElementById("answer").value = autotext;
+        document.getElementById("answer").value = document.getElementById("answer").value + autotext;
     }
 }
 
