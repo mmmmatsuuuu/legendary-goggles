@@ -15,13 +15,34 @@ synth.pitch  = 0;
 synth.volume = 1;
 
 // 音声認識API
+let speech = "";
 const recognition = new webkitSpeechRecognition();
 recognition.lang = "ja-JP";
-recognition.onresult = function(e) {
-    recognition.stop();
-    if(e.results[0].isFinal){
-        const autotext =  e.results[0][0].transcript
-        document.getElementById("answer").value = document.getElementById("answer").value + autotext;
+recognition.interimResults = true;
+recognition.continuous = true;
+
+recognition.onsoundstart = function(){
+    document.getElementById('rec-status').innerHTML = "認識中";
+};
+recognition.onnomatch = function(){
+    document.getElementById('rec-status').innerHTML = "もう一度試してください";
+};
+recognition.onerror= function(){
+    document.getElementById('rec-status').innerHTML = "エラー";
+};
+recognition.onsoundend = function(){
+    document.getElementById('rec-status').innerHTML = "停止中";
+};
+
+recognition.onresult = function(event) {
+    var results = event.results;
+    for (var i = event.resultIndex; i<results.length; i++){
+        if(results[i].isFinal) {
+            document.getElementById('answer').innerHTML = results[i][0].transcript;
+            speech = speech + "　" + results[i][0].transcript;
+        } else {
+            document.getElementById('answer').innerHTML = "[途中経過] "+ results[i][0].transcript;
+        }
     }
 }
 
@@ -151,8 +172,13 @@ function playQuestion(question) {
 /**
  * ユーザーの解答を文字に起こす
  */
-function recAnswer() {
+function recStart() {
     recognition.start();
+}
+
+function recStop() {
+    recognition.stop();
+    document.getElementById('answer').innerHTML = speech;
 }
 
 /**
