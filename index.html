@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="shortcut icon" type="image/x-icon" href="legendary-goggles/favicon.ico">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <title>トップ</title>
 </head>
-<body class="min-h-screen w-screen font-serif">
-    <div class="max-w-5xl min-h-screen m-auto mb-8">
+<body class="w-screen font-serif">
+    <div class="max-w-5xl min-h-[764px] m-auto mb-8">
         <div class="w-full">
             <h1 class="text-3xl font-black px-2 pt-2 pb-8 border-r-8 border-accent text-right">
                 <span class="text-accent">疑似面接アプリ</span>
                 <span class="text-secondary text-right">legendary goggles</span>
             </h1>
         </div>
+
         <div class="p-1">
             <div class="py-2 flex justify-end">
                 <button onclick="initAll()" class="px-8 py-2 border-accent border-2 hover:bg-accent hover:text-white">初期化する</button>
@@ -162,16 +164,39 @@
             </div>
         </div>
     </div>
-    <footer class="max-w-5xl m-auto bg-main text-white p-4 flex flex-row-reverse">
-        <a 
-            href="https://github.com/mmmmatsuuuu/legendary-goggles"
-            class="block flex text-lg bg-white rounded-full text-black px-4"
-        >
-        <img src="./src/img/GitHub-Mark-64px.png" class="w-6 p-1">
-        GitHub
-        </a>
-        このサイトの仕組みが知りたい人はこちら→
+
+    <footer class=" bg-main text-white">
+        <div class="max-w-5xl m-auto p-4 py-8 grid grid-cols-12 items-center">
+            <div class="col-span-10">
+                <ul class="list-disc list-inside text-sm">
+                    <li>このサイトはPC、Chromebook等での使用を想定しており、スマホやタブレットでの使用は想定していません。</li>
+                    <li>
+                        このサイトはWebSpeechAPIを使用しております。ブラウザ等の対応は
+                        <a 
+                            href="https://developer.mozilla.org/ja/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API#browser_support"
+                            class="underline"
+                        >
+                            こちら
+                        </a>
+                    </li>
+                    <li>発声や録音の精度は使用しているブラウザに依存します。</li>
+                    <li>このサイトを利用してのトラブルは一切責任をとれませんので自己責任での利用をお願いします。</li>
+                    <li>このサイトを改善するためのissueやpull requestは歓迎します。隣のリンクからお願いします。</li>
+                </ul>
+            </div>
+            <div class="col-span-2">
+                ソースコードはこちら
+                <a 
+                    href="https://github.com/mmmmatsuuuu/legendary-goggles"
+                    class="flex justify-center text-lg bg-white rounded-full text-black px-4"
+                >
+                <img src="./src/img/GitHub-Mark-64px.png" class="w-6 p-1">
+                GitHub
+                </a>
+            </div>
+        </div>
     </footer>
+
     <div id="modal" class="fixed top-0 left-0 w-screen h-screen bg-black/50 z-50 flex justify-center items-center hidden">
         <div class="p-8 bg-secondary rounded-lg shadow-lg w-1/2">
             <h2 class="text-2xl font-bold text-white">編集</h2>
