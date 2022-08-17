@@ -11,7 +11,7 @@ const synth = new SpeechSynthesisUtterance();
 synth.text   = "";
 synth.lang   = "ja-JP";
 synth.rate   = 1;
-synth.pitch  = 0;
+synth.pitch  = 0.8;
 synth.volume = 1;
 
 // 音声認識API
@@ -22,16 +22,24 @@ recognition.interimResults = true;
 recognition.continuous = true;
 
 recognition.onsoundstart = function(){
-    document.getElementById('rec-status').innerHTML = "認識中";
+    const d = document.getElementById('rec-status');
+    d.innerHTML = "認識中";
+    d.className = "text-[#FF1200] animate-pulse";
 };
 recognition.onnomatch = function(){
-    document.getElementById('rec-status').innerHTML = "もう一度試してください";
+    const d = document.getElementById('rec-status');
+    d.innerHTML = "もう一度試してください";
+    d.className = "text-accent";
 };
 recognition.onerror= function(){
-    document.getElementById('rec-status').innerHTML = "エラー";
+    const d = document.getElementById('rec-status');
+    d.innerHTML = "エラー";
+    d.className = "text-accent";
 };
 recognition.onsoundend = function(){
-    document.getElementById('rec-status').innerHTML = "停止中";
+    const d = document.getElementById('rec-status');
+    d.innerHTML = "停止中";
+    d.className = "text-secondary";
 };
 
 recognition.onresult = function(event) {

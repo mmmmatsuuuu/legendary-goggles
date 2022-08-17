@@ -9,20 +9,23 @@
     <title>トップ</title>
 </head>
 <body class="min-h-screen w-screen font-serif">
-    <div class="max-w-5xl min-h-screen m-auto lg:flex lg:justify-center lg:items-top">
-        <div class="w-full lg:basis-1/4">
-            <h1 class="h-48 lg:h-64 w-48 flex items-center bg-secondary text-white text-3xl font-black p-1 py-2">疑似面接<br>アプリ</h1>
+    <div class="max-w-5xl min-h-screen m-auto mb-8">
+        <div class="w-full">
+            <h1 class="text-3xl font-black px-2 pt-2 pb-8 border-r-8 border-accent text-right">
+                <span class="text-accent">疑似面接アプリ</span>
+                <span class="text-secondary text-right">legendary goggles</span>
+            </h1>
         </div>
-        <div class="p-1 lg:basis-3/4 h-screen pt-4">
+        <div class="p-1">
             <div class="py-2 flex justify-end">
                 <button onclick="initAll()" class="px-8 py-2 border-accent border-2 hover:bg-accent hover:text-white">初期化する</button>
             </div>
 
             <div class="flex justify-left">
-                <button id="tabs-1" name="tab-btns" onclick="changeTabs(1)" class="px-8 py-2 bg-main text-white border-main border-2 shadow-md">面接カード１</button>
-                <button id="tabs-2" name="tab-btns" onclick="changeTabs(2)" class="px-8 py-2 bg-white text-main border-main border-2">面接カード２</button>
-                <button id="tabs-3" name="tab-btns" onclick="changeTabs(3)" class="px-8 py-2 bg-white text-main border-main border-2">面接カード３</button>
-                <button id="tabs-4" name="tab-btns" onclick="changeTabs(4)" class="px-8 py-2 bg-white text-main border-main border-2">面接カード４</button>
+                <button id="tabs-1" name="tab-btns" onclick="changeTabs(1)" class="px-8 py-2 bg-main text-white border-main border-2 border-b-0 shadow-md">面接カード<span class="text-4xl">1</span></button>
+                <button id="tabs-2" name="tab-btns" onclick="changeTabs(2)" class="px-8 py-2 bg-white text-main border-main border-2 border-b-0">面接カード<span class="text-4xl">2</span></button>
+                <button id="tabs-3" name="tab-btns" onclick="changeTabs(3)" class="px-8 py-2 bg-white text-main border-main border-2 border-b-0">面接カード<span class="text-4xl">3</span></button>
+                <button id="tabs-4" name="tab-btns" onclick="changeTabs(4)" class="px-8 py-2 bg-white text-main border-main border-2 border-b-0">面接カード<span class="text-4xl">4</span></button>
             </div>
 
             <div class="relative">
@@ -41,7 +44,7 @@
                         </div>
                         <button onclick="createData(1)" class="basis-1/6 p-2 border-accent border-2 hover:bg-accent hover:text-white w-2/12" >質問を追加</button>
                     </div>
-                    <div class="h-96 overflow-scroll">
+                    <div class="h-80 overflow-scroll">
                         <table class="table-auto border-collapse border">
                             <thead>
                                 <tr>
@@ -73,7 +76,7 @@
                         </div>
                         <button onclick="createData(2)" class="basis-1/6 p-2 border-accent border-2 hover:bg-accent hover:text-white w-2/12" >質問を追加</button>
                     </div>
-                    <div class="h-96 overflow-scroll">
+                    <div class="h-80 overflow-scroll">
                         <table class="table-auto border-collapse border">
                             <thead>
                                 <tr>
@@ -106,7 +109,7 @@
                         </div>
                         <button onclick="createData(3)" class="basis-1/6 p-2 border-accent border-2 hover:bg-accent hover:text-white w-2/12" >質問を追加</button>
                     </div>
-                    <div class="h-96 overflow-scroll">
+                    <div class="h-80 overflow-scroll">
                         <table class="table-auto border-collapse border">
                             <thead>
                                 <tr>
@@ -139,7 +142,7 @@
                         </div>
                         <button onclick="createData(4)" class="basis-1/6 p-2 border-accent border-2 hover:bg-accent hover:text-white w-2/12" >質問を追加</button>
                     </div>
-                    <div class="h-96 overflow-scroll">
+                    <div class="h-80 overflow-scroll">
                         <table class="table-auto border-collapse border">
                             <thead>
                                 <tr>
@@ -159,6 +162,16 @@
             </div>
         </div>
     </div>
+    <footer class="max-w-5xl m-auto bg-main text-white p-4 flex flex-row-reverse">
+        <a 
+            href="https://github.com/mmmmatsuuuu/legendary-goggles"
+            class="block flex text-lg bg-white rounded-full text-black px-4"
+        >
+        <img src="./src/img/GitHub-Mark-64px.png" class="w-6 p-1">
+        GitHub
+        </a>
+        このサイトの仕組みが知りたい人はこちら→
+    </footer>
     <div id="modal" class="fixed top-0 left-0 w-screen h-screen bg-black/50 z-50 flex justify-center items-center hidden">
         <div class="p-8 bg-secondary rounded-lg shadow-lg w-1/2">
             <h2 class="text-2xl font-bold text-white">編集</h2>
