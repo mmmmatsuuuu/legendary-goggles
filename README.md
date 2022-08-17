@@ -21,7 +21,7 @@
 
 - html
 - css
-- pure JS
+- JavaScript
 
 で出来そうだ。GitHub Pagesにホスティングすれば良さそう。質問一覧の保持にはローカルストレージを使用する。
 

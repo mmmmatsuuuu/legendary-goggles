@@ -310,9 +310,9 @@ function changeTabs(num) {
     const btns = document.getElementsByName("tab-btns");
     for (let i = 0; i < btns.length; i++) {
         if (btns[i].id == `tabs-${num}`) {
-            btns[i].className = "px-8 py-2 bg-main text-white border-main border-2 shadow-md";
+            btns[i].className = "px-8 py-2 bg-main text-white border-main border-2 border-b-0 shadow-md";
         } else {
-            btns[i].className = "px-8 py-2 bg-white text-main border-main border-2";
+            btns[i].className = "px-8 py-2 bg-white text-main border-main border-2 border-b-0";
         }
     }
 }
