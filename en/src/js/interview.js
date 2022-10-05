@@ -1,5 +1,5 @@
 // 初期値
-const INTERVIEW_ID   = "interviews";
+const INTERVIEW_ID   = "en-interviews";
 const ANSWER_ID      = "answer";
 const COUNT_ID       = "count";
 const QUESTION_DOM   = "question";
@@ -9,7 +9,7 @@ const INTERVIEW_INFO = "interview-info";
 // テキスト読み上げAPI
 const synth = new SpeechSynthesisUtterance(); 
 synth.text   = "";
-synth.lang   = "ja-JP";
+synth.lang   = "en-US";
 synth.rate   = 1;
 synth.pitch  = 0.8;
 synth.volume = 1;
@@ -17,7 +17,7 @@ synth.volume = 1;
 // 音声認識API
 let speech = "";
 const recognition = new webkitSpeechRecognition();
-recognition.lang = "ja-JP";
+recognition.lang = "en-US";
 recognition.interimResults = true;
 recognition.continuous = true;
 

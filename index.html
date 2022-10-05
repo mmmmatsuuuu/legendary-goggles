@@ -7,161 +7,19 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>トップ</title>
+    <title>legendary-goggles</title>
 </head>
-<body class="w-screen font-serif">
-    <div class="max-w-5xl min-h-[764px] m-auto mb-8">
+<body class="min-h-screen w-screen font-serif">
+    <div class="max-w-5xl min-h-screen m-auto flex flex-col justify-center items-center">
         <div class="w-full">
-            <h1 class="text-3xl font-black px-2 pt-2 pb-8 border-r-8 border-accent text-right">
+            <h1 class="text-3xl font-black px-2 pt-2 pb-8 border-r-8 border-accent text-right mb-12">
                 <span class="text-accent">疑似面接アプリ</span>
                 <span class="text-secondary text-right">legendary goggles</span>
             </h1>
         </div>
-
-        <div class="p-1">
-            <div class="py-2 flex justify-end">
-                <button onclick="initAll()" class="px-8 py-2 border-accent border-2 hover:bg-accent hover:text-white">初期化する</button>
-            </div>
-
-            <div class="flex justify-left">
-                <button id="tabs-1" name="tab-btns" onclick="changeTabs(1)" class="px-8 py-2 bg-main text-white border-main border-2 border-b-0 shadow-md">面接カード<span class="text-4xl">1</span></button>
-                <button id="tabs-2" name="tab-btns" onclick="changeTabs(2)" class="px-8 py-2 bg-white text-main border-main border-2 border-b-0">面接カード<span class="text-4xl">2</span></button>
-                <button id="tabs-3" name="tab-btns" onclick="changeTabs(3)" class="px-8 py-2 bg-white text-main border-main border-2 border-b-0">面接カード<span class="text-4xl">3</span></button>
-                <button id="tabs-4" name="tab-btns" onclick="changeTabs(4)" class="px-8 py-2 bg-white text-main border-main border-2 border-b-0">面接カード<span class="text-4xl">4</span></button>
-            </div>
-
-            <div class="relative">
-                <div id="interview-1" name="tabs" class="absolute top-0 left-0 z-10 w-full bg-white border-main border-2 p-2 shadow-md">
-                    <div class="py-2 flex justify-end">
-                        <a href="./interview.html?interview_id=1&q_id=0" class="px-8 py-2 border-accent border-2 hover:bg-accent hover:text-white">
-                            模擬面接をする
-                        </a>
-                    </div>
-                    <div class="py-2 flex justify-between">
-                        <div class="flex flex-col w-full basis-5/6 mr-1">
-                            <label for="input-question-1">質問内容</label>
-                            <textarea id="input-question-1" name="input-question" placeholder="志望動機を教えてください。" class="w-full border border-secondary rounded"></textarea>
-                            <label for="input-model-answer-1">模範解答</label>
-                            <textarea id="input-model-answer-1" name="input-model-answer" value="" placeholder="私の志望動機は、..." class="w-full border border-secondary rounded"></textarea>
-                        </div>
-                        <button onclick="createData(1)" class="basis-1/6 p-2 border-accent border-2 hover:bg-accent hover:text-white w-2/12" >質問を追加</button>
-                    </div>
-                    <div class="h-80 overflow-scroll">
-                        <table class="table-auto border-collapse border">
-                            <thead>
-                                <tr>
-                                    <th class="bg-secondary border border-main font-black p-1 w-1/12">No.</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-5/12">質問内容</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-4/12">模範解答</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-1/12">編集</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-1/12">削除</th>
-                                </tr>
-                            </thead>
-                            <tbody id="q-table-body-1">
-                    
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div id="interview-2" name="tabs" class="absolute top-0 left-0 z-0 w-full bg-white border-main border-2 p-2">
-                    <div class="py-2 flex justify-end">
-                        <a href="./interview.html?interview_id=2&q_id=0" class="px-8 py-2 border-accent border-2 hover:bg-accent hover:text-white">
-                            模擬面接をする
-                        </a>
-                    </div>
-                    <div class="py-2 flex justify-between">
-                        <div class="flex flex-col w-full basis-5/6 mr-1">
-                            <label for="input-question-2">質問内容</label>
-                            <textarea id="input-question-2" name="input-question" placeholder="志望動機を教えてください。" class="w-full border border-secondary rounded"></textarea>
-                            <label for="input-model-answer-2">模範解答</label>
-                            <textarea id="input-model-answer-2" name="input-model-answer" value="" placeholder="私の志望動機は、..." class="w-full border border-secondary rounded"></textarea>
-                        </div>
-                        <button onclick="createData(2)" class="basis-1/6 p-2 border-accent border-2 hover:bg-accent hover:text-white w-2/12" >質問を追加</button>
-                    </div>
-                    <div class="h-80 overflow-scroll">
-                        <table class="table-auto border-collapse border">
-                            <thead>
-                                <tr>
-                                    <th class="bg-secondary border border-main font-black p-1 w-1/12">No.</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-5/12">質問内容</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-4/12">模範解答</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-1/12">編集</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-1/12">削除</th>
-                                </tr>
-                            </thead>
-                            <tbody id="q-table-body-2">
-                    
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                </div>
-                <div id="interview-3" name="tabs" class="absolute top-0 left-0 z-0 w-full bg-white border-main border-2 p-2">
-                    <div class="py-2 flex justify-end">
-                        <a href="./interview.html?interview_id=3&q_id=0" class="px-8 py-2 border-accent border-2 hover:bg-accent hover:text-white">
-                            模擬面接をする
-                        </a>
-                    </div>
-                    <div class="py-2 flex justify-between">
-                        <div class="flex flex-col w-full basis-5/6 mr-1">
-                            <label for="input-question-3">質問内容</label>
-                            <textarea id="input-question-3" name="input-question" placeholder="志望動機を教えてください。" class="w-full border border-secondary rounded"></textarea>
-                            <label for="input-model-answer-3">模範解答</label>
-                            <textarea id="input-model-answer-3" name="input-model-answer" value="" placeholder="私の志望動機は、..." class="w-full border border-secondary rounded"></textarea>
-                        </div>
-                        <button onclick="createData(3)" class="basis-1/6 p-2 border-accent border-2 hover:bg-accent hover:text-white w-2/12" >質問を追加</button>
-                    </div>
-                    <div class="h-80 overflow-scroll">
-                        <table class="table-auto border-collapse border">
-                            <thead>
-                                <tr>
-                                    <th class="bg-secondary border border-main font-black p-1 w-1/12">No.</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-5/12">質問内容</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-4/12">模範解答</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-1/12">編集</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-1/12">削除</th>
-                                </tr>
-                            </thead>
-                            <tbody id="q-table-body-3">
-                    
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                </div>
-                <div id="interview-4" name="tabs" class="absolute top-0 left-0 z-0 w-full bg-white border-main border-2 p-2">
-                    <div class="py-2 flex justify-end">
-                        <a href="./interview.html?interview_id=4&q_id=0" class="px-8 py-2 border-accent border-2 hover:bg-accent hover:text-white">
-                            模擬面接をする
-                        </a>
-                    </div>
-                    <div class="py-2 flex justify-between">
-                        <div class="flex flex-col w-full basis-5/6 mr-1">
-                            <label for="input-question-4">質問内容</label>
-                            <textarea id="input-question-4" name="input-question" placeholder="志望動機を教えてください。" class="w-full border border-secondary rounded"></textarea>
-                            <label for="input-model-answer-4">模範解答</label>
-                            <textarea id="input-model-answer-4" name="input-model-answer" value="" placeholder="私の志望動機は、..." class="w-full border border-secondary rounded"></textarea>
-                        </div>
-                        <button onclick="createData(4)" class="basis-1/6 p-2 border-accent border-2 hover:bg-accent hover:text-white w-2/12" >質問を追加</button>
-                    </div>
-                    <div class="h-80 overflow-scroll">
-                        <table class="table-auto border-collapse border">
-                            <thead>
-                                <tr>
-                                    <th class="bg-secondary border border-main font-black p-1 w-1/12">No.</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-5/12">質問内容</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-4/12">模範解答</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-1/12">編集</th>
-                                    <th class="bg-secondary border border-main font-black p-1 w-1/12">削除</th>
-                                </tr>
-                            </thead>
-                            <tbody id="q-table-body-4">
-                    
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        <div class="flex">
+            <a href="./jp/index.html" class="m-4 px-8 py-2 border-accent border-2 hover:bg-accent hover:text-white">日本語で面接</a>
+            <a href="./en/index.html" class="m-4 px-8 py-2 border-accent border-2 hover:bg-accent hover:text-white">英語で面接</a>
         </div>
     </div>
 
@@ -190,33 +48,12 @@
                     href="https://github.com/mmmmatsuuuu/legendary-goggles"
                     class="flex justify-center text-lg bg-white rounded-full text-black px-4"
                 >
-                <img src="./src/img/GitHub-Mark-64px.png" class="w-6 p-1">
                 GitHub
                 </a>
             </div>
         </div>
     </footer>
 
-    <div id="modal" class="fixed top-0 left-0 w-screen h-screen bg-black/50 z-50 flex justify-center items-center hidden">
-        <div class="p-8 bg-secondary rounded-lg shadow-lg w-1/2">
-            <h2 class="text-2xl font-bold text-white">編集</h2>
-            <label for="edit-question">質問内容</label>
-            <textarea id="edit-question" name="edit-question" placeholder="志望動機を教えてください。" class="w-full border border-secondary rounded"></textarea>
-            <label for="edit-answer">模範解答</label>
-            <textarea id="edit-answer" name="edit-model-answer" value="" placeholder="私の志望動機は、..." class="w-full border border-secondary rounded"></textarea>
-            <div class="flex justify-center items-center">
-                <div class="basis-1/2 mr-2">
-                    <button id="edit-button" class="w-full p-2 border-accent border-2 bg-white hover:bg-accent hover:text-white">上書き</button>
-                </div>
-                <div class="basis-1/2">
-                    <button id="modal-close" onclick="closeModal()" class="w-full p-2 border-accent border-2 bg-white hover:bg-accent hover:text-white">閉じる</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="./src/js/tailwind.js"></script>
-    <script src="./src/js/lib.js"></script>
-    <script src="./src/js/index.js"></script>
 </body>
 </html>
