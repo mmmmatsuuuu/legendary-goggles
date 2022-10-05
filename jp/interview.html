@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>面接</title>
+</head>
+<body class="min-h-screen w-screen font-serif">
+    <div class="max-w-5xl min-h-screen m-auto">
+        <div class="flex justify-between items-end py-2 mb-4 border-b-4 border-accent">
+            <h1 class="text-accent text-3xl">模擬面接</h1>
+            <a href="./index.html" class="px-8 py-2 border-accent border-2 hover:bg-accent hover:text-white">TOP</a>
+        </div>
+        <div class=""></div>
+        <img src="./src/img/interviewer.png" class="m-auto mb-2 h-80">
+        <div class="mb-2">
+            <h2 class="text-accent text-xl border-b border-accent">
+                質問：
+                <span id="interview-info"></span>
+            </h2>
+        </div>
+        <div class="flex items-top w-full mb-2">
+            <div class="text-xl font-bold basis-1/12">Q:</div>
+            <div class="basis-9/12">
+                <p id="question" class="text-lg"></p>
+            </div>
+            <div class="basis-2/12 flex justify-end">
+                <button id="speak" class="px-8 py-2 border-main border-2 hover:bg-main hover:text-white">再生</button>
+            </div>
+        </div>
+        <div class="flex items-top w-full mb-4">
+            <div class="text-xl font-bold basis-1/12">A:</div>
+            <div class="basis-9/12 flex flex-col">
+                <input type="hidden" id="question-number">
+                <div id="rec-status" class="text-secondary"></div>
+                <textarea id="answer" class="w-full h-32 text-lg border border-secondary"></textarea>
+            </div>
+            <div class="basis-2/12 flex flex-col justify-start">
+                <button onclick="recStart()" class="h-full px-8 py-2 mb-2 ml-1 border-main border-2 hover:bg-main hover:text-white">録音</button>
+                <button onclick="recStop()" class="h-full px-8 py-2 ml-1 border-main border-2 hover:bg-main hover:text-white">停止</button>
+            </div>
+        </div>
+        <div class="mb-2">
+            <h2 class="text-accent text-xl border-b border-accent">
+                操作
+            </h2>
+        </div>
+        <div class="flex justify-between">
+            <button id="prev" class="px-8 py-2 border-main border-2 hover:bg-main hover:text-white">前の質問へ</button>
+            <button id="next" class="px-8 py-2 border-main border-2 hover:bg-main hover:text-white">次の質問へ</button>
+        </div>
+    </div>
+    <div>
+        <div>
+        </div>
+        <div>
+            
+        </div>
+    </div>
+
+    <script src="./src/js/tailwind.js"></script>
+    <script src="./src/js/lib.js"></script>
+    <script src="./src//js//interview.js"></script>
+</body>
+</html>

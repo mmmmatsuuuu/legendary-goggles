@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>面接結果</title>
+</head>
+<body class="min-h-screen w-screen font-serif">
+    <div class="max-w-5xl min-h-screen m-auto">
+        <div class="flex justify-between items-end py-2 mb-4 border-b-4 border-accent">
+            <h1 class="text-accent text-3xl">面接結果</h1>
+            <button onclick="goTop()" class="px-8 py-2 border-accent border-2 hover:bg-accent hover:text-white">TOPに戻る</button>
+        </div>
+
+        <div class="flex justify-end">
+            <button id="speak" disabled class="opacity-40 px-8 py-2 border-accent border-2 hover:bg-accent hover:text-white">結果をメールする。</button>
+        </div>
+        <div id="result-list">
+        </div>
+    </div>
+
+    <script src="./src/js/tailwind.js"></script>
+    <script src="./src/js/lib.js"></script>
+    <script src="./src//js//result.js"></script>
+</body>
+</html>

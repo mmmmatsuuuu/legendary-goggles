@@ -1,7 +1,7 @@
 // 初期値
 let COUNT_INIT     = 3;
 const TABLE_ID     = "result-list";
-const INTERVIEW_ID = "interviews";
+const INTERVIEW_ID = "jp-interviews";
 const ANSWER_ID    = "answer";
 const COUNT_ID     = "count";
 

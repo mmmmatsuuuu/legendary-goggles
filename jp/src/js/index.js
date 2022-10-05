@@ -42,7 +42,7 @@ const interviewsTemplate = {
 
 const COUNT_INIT   = interviewTemplate.length;
 const TABLE_ID     = "q-table-body";
-const INTERVIEW_ID = "interviews";
+const INTERVIEW_ID = "jp-interviews";
 const ANSWER_ID    = "answer";
 
 /** ==========================================================
